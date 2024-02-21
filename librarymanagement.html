@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+    <title>Library Management System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("librarymanagement\ bg.jpg"); 
+            background-size: 80%;
+            font-family: 'Arial', sans-serif;
+            background-repeat: no-repeat;
+            
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin-top: 150px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 800px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Library Management System</h1>
+        <button onclick="addBook()" >Add a new book</button>
+        <div id="output"></div>
+    </div>
+    <script>
+    var flag = true;
+    while (flag) {
+    switch (prompt("1.Add a New Book\n2.Exit")) {
+        case "1":
+            addBook();
+            break;
+        case "2":
+            flag = false;
+            confirm("Are you want to Exit?");
+            break;
+        default:
+            alert("please Enter either option 1 or 2");
+
+    }
+}
+        function addBook() {
+            var title = prompt("Enter the book title:");
+            var author = prompt("Enter the author:");
+            var year =prompt("Enter the year of release:");
+            var genre =prompt("Enter the genre of book:");
+
+            if (title && author) {
+                var bookInfo = document.createElement("p");
+                bookInfo.textContent = "Title: " + title + ", Author: " + author + ", Year: " + year + ", Genre: " + genre;
+
+                var deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.onclick = function () {
+                    deleteBook(bookInfo);
+                };
+
+                bookInfo.appendChild(deleteButton);
+                document.getElementById("output").appendChild(bookInfo);
+
+                
+            }
+        }
+
+        function deleteBook(bookInfo) {
+            var confirmDelete = confirm("Are you sure you want to delete this book?");
+            if (confirmDelete) {
+                bookInfo.remove();
+            }
+        }
+
+  
+    </script>
+</body>
+
+</html>
